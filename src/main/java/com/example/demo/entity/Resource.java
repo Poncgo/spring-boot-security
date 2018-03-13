@@ -1,46 +1,23 @@
 package com.example.demo.entity;
 
-import javax.persistence.*;
-
-/**
- *  资源类：本实例指的是访问路径
- */
-@Entity
 public class Resource {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column (name="id",length=10)
     private Integer id;
 
-    @Column(name="resourceName",length=1000)
-    private String resourceName;
+    private String name;
 
-    public int getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getResourceName() {
-        return resourceName;
+    public String getName() {
+        return name;
     }
 
-    public void setResourceName(String resourceName) {
-        this.resourceName = resourceName;
-    }
-
-    @Override
-    public String toString() {
-        return "SysResource{" +
-                "id=" + id +
-                ", resourceName='" + resourceName + '\'' +
-                '}';
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 }
-

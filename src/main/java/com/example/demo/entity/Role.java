@@ -1,20 +1,9 @@
 package com.example.demo.entity;
 
-import javax.persistence.*;
-
-
-/**
- *  角色类
- */
-@Entity
 public class Role {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column (name="id",length=10)
     private Integer id;
 
-    @Column(name="roleName",length=100)
-    private String roleName;
+    private String rolename;
 
     public Integer getId() {
         return id;
@@ -24,20 +13,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getRolename() {
+        return rolename;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    @Override
-    public String toString() {
-        return "SysRole{" +
-                "id=" + id +
-                ", roleName='" + roleName + '\'' +
-                '}';
+    public void setRolename(String rolename) {
+        this.rolename = rolename == null ? null : rolename.trim();
     }
 }
-

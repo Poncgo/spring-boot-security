@@ -6,9 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.demo.entity.User;
-import com.example.demo.repository.ResourceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -22,9 +19,6 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  */
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    @Autowired
-    private ResourceRepository resourceRepository;
-
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
@@ -34,7 +28,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 
         System.out.println(authentication.getPrincipal());//用户对象
         //获得授权后可得到用户信息
-        User user = (User)authentication.getPrincipal();
+        MyUserDetails user = (MyUserDetails)authentication.getPrincipal();
 
         //输出登录提示信息
         System.out.println("用户名： " + user.getUsername());

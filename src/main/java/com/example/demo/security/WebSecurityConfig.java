@@ -5,6 +5,7 @@ import com.example.demo.security.CustomInvocationSecurityMetadataSourceService;
 import com.example.demo.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,6 +26,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -67,13 +69,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 //注销后使session相关信息无效
                 .invalidateHttpSession(true)
-                .and()
+                .and();
                 // 开启rememberme功能：验证，登录成功后，关闭页面，直接访问登陆后可以访问的页面
-                .rememberMe()
+                //.rememberMe()
                 //持久化到数据库 如果不需要持久化到数据库，直接注释掉即可
-                .rememberMeServices(new PersistentTokenBasedRememberMeServices("MySpringSecurityCookie",customUserDetailsService,persistentTokenRepository()))
+                //.rememberMeServices(new PersistentTokenBasedRememberMeServices("MySpringSecurityCookie",customUserDetailsService,persistentTokenRepository()))
                 //设置有效时间
-                .tokenValiditySeconds(7*24*60*60);
+                //.tokenValiditySeconds(7*24*60*60);
         //权限不足处理
         http.exceptionHandling().accessDeniedHandler(new AccessDeniedHandlerImpl()).accessDeniedPage("/deny");
     }
@@ -147,7 +149,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         FilterSecurityInterceptor filterSecurityInterceptor = new FilterSecurityInterceptor();
         filterSecurityInterceptor.setSecurityMetadataSource(mySecurityMetadataSource);
         filterSecurityInterceptor.setAccessDecisionManager(myAccessDecisionManager);
-        filterSecurityInterceptor.setAuthenticationManager(authenticationManager);
+       // filterSecurityInterceptor.setAuthenticationManager(authenticationManager);
         return filterSecurityInterceptor;
     }
 }

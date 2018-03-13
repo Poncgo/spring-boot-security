@@ -1,54 +1,33 @@
 package com.example.demo.entity;
 
-import javax.persistence.*;
-
-/**
- *  资源与角色中间表
- */
-@Entity
 public class ResourceRole {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column (name="id",length=10)
-    private int id;
+    private Integer id;
 
-    @Column(name="roleId",length=50)
-    private String roleId;
+    private Integer roleid;
 
-    @Column(name="resourceId",length=50)
-    private String resourceId;
+    private Integer resourceid;
 
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public Integer getRoleid() {
+        return roleid;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
     }
 
-    public String getResourceId() {
-        return resourceId;
+    public Integer getResourceid() {
+        return resourceid;
     }
 
-    public void setResourceId(String resourceId) {
-        this.resourceId = resourceId;
-    }
-
-    @Override
-    public String toString() {
-        return "SysResourceRole{" +
-                "id=" + id +
-                ", roleId='" + roleId + '\'' +
-                ", resourceId='" + resourceId + '\'' +
-                '}';
+    public void setResourceid(Integer resourceid) {
+        this.resourceid = resourceid ;
     }
 }
