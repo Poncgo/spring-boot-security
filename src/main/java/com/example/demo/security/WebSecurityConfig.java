@@ -33,8 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-//    @Autowired
-//    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+    @Autowired
+    private CustomFilterSecurityInterceptor myFilterSecurityInterceptor;
 
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -46,12 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//                .addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)//在正确的位置添加我们自定义的过滤器
+                .addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)//在正确的位置添加我们自定义的过滤器
                 // 重新添加拥有自己属性的过滤器;
                 /**
                  *  不使用自定义过滤器类的话，可以直接使用默认实现的类，并提供自定义的属性
                  */
-                .addFilter(filterSecurityInterceptor())
+//                .addFilter(filterSecurityInterceptor())
                 .authorizeRequests()
                 //路径/home不需要验证
                 .antMatchers("/home").permitAll()
@@ -149,7 +149,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         FilterSecurityInterceptor filterSecurityInterceptor = new FilterSecurityInterceptor();
         filterSecurityInterceptor.setSecurityMetadataSource(mySecurityMetadataSource);
         filterSecurityInterceptor.setAccessDecisionManager(myAccessDecisionManager);
-       // filterSecurityInterceptor.setAuthenticationManager(authenticationManager);
+        filterSecurityInterceptor.setAuthenticationManager(authenticationManager);
         return filterSecurityInterceptor;
     }
 }
